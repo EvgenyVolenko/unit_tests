@@ -37,8 +37,6 @@ public class ShopTest {
         assertThat(shop.getMostExpensiveProduct()).isEqualTo(products.get(2));
         assertThat(shop.getProducts().size()).isEqualTo(4);
         assertThat(shop.getSortedListProducts()).isNotEmpty();
-        assertThat(shop.getSortedListProducts().sort());
-
     }
 
     /*
