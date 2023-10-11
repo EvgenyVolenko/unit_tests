@@ -1,3 +1,5 @@
+package seminars.first.hw;
+
 import seminars.first.model.Calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,7 +51,18 @@ public class CalculatorTest {
                 Calculator.calculation(8, 4, '_')
         ).isInstanceOf(IllegalStateException.class);
 
-        System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
-        System.out.println(Calculator.squareRootExtraction(169));
+//        System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
+//        System.out.println(Calculator.squareRootExtraction(25));
+
+        assertThat(Calculator.calculatingDiscount(100, 10)).isEqualTo(90);
+        assertThat(Calculator.calculatingDiscount(1350, 100)).isEqualTo(0);
+        assertThat(Calculator.calculatingDiscount(1350, 0)).isEqualTo(1350);
+        assertThat(Calculator.calculatingDiscount(0, 50)).isEqualTo(0);
+        assertThatThrownBy(() ->
+                Calculator.calculatingDiscount(-30,50))
+                .isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() ->
+                Calculator.calculatingDiscount(100,101))
+                .isInstanceOf(ArithmeticException.class);
     }
 }
