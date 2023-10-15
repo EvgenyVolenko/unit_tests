@@ -15,8 +15,6 @@ class VehicleTest {
     Car car;
     Motorcycle moto;
 
-    private ByteArrayOutputStream output = new ByteArrayOutputStream();
-
     @BeforeEach
     void setUp() {
         car = new Car("Dodge", "Ram", 2010);
