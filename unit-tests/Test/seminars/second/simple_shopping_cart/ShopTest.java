@@ -1,6 +1,6 @@
 package seminars.second.simple_shopping_cart;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import seminars.second.model.Cart;
@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -269,12 +270,18 @@ class ShopTest {
      * <br> 4. После проверки работоспособности теста, его нужно выключить
      */
     @Test
+    @DisplayName("Advanced test for calculating TotalPrice")
+    @RepeatedTest(10)
+    @Timeout(value = 70, unit = TimeUnit.MILLISECONDS)
+    @Disabled
     void priceCartIsCorrectCalculatedExt() {
         // Arrange (Подготовка)
-
+        Shop shop = new Shop(getStoreItems());
+        Cart cart = new Cart(shop);
         // Act (Выполнение)
-
+        cart.addProductToCartByID(2); // 250
+        cart.addProductToCartByID(2); // 250
         // Assert (Проверка утверждения)
-
+        assertThat(cart.getTotalPrice()).isEqualTo(500);
     }
 }
