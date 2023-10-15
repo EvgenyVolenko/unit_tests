@@ -59,7 +59,8 @@ public class Cart {
 
         if (productInShop.getQuantity() == 0) {
             System.out.println("Этого товара нет в наличии");
-            return;
+            throw new IllegalStateException("Этого товара нет в наличии");
+//            return;
         }
 
         // Изменяем кол-во в корзине +1
