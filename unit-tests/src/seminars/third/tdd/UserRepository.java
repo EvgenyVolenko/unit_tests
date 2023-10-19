@@ -19,6 +19,7 @@ public class UserRepository {
             user = data.get(i);
             if (!user.isAdmin) {
                 data.remove(i);
+                i--;
             }
         }
     }
