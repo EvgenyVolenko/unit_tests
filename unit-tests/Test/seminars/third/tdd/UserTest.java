@@ -73,6 +73,19 @@ public class UserTest {
     }
 
     @Test
+    void logoutAllExceptRepoNotEmpty(){
+        String name = "name";
+        String password = "password";
+        User user = new User(name, password, false);
+        user.authenticate(name, password);
+        repository.addUser(user);
+
+        boolean repoNull = repository.data.isEmpty();
+
+        assertFalse(repoNull);
+    }
+
+    @Test
     void logoutAllExceptAdminTestPositive() {
 
         User user;
@@ -88,9 +101,9 @@ public class UserTest {
         }
 
         int currentAdmins = 0;
-        for (int i = 0; i < repository.data.size(); i++) {
-            System.out.println(repository.data.get(i).isAdmin);
-            if (repository.data.get(i).isAdmin) {
+
+        for (User userSearch : repository.data) {
+            if (userSearch.isAdmin) {
                 currentAdmins++;
             }
         }
