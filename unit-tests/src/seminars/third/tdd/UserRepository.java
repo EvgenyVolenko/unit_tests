@@ -9,8 +9,18 @@ public class UserRepository {
     List<User> data = new ArrayList<>();
 
     public void addUser(User user) {
-       if(!user.isAuthenticate) return;
-       data.add(user);
+        if (!user.isAuthenticate) return;
+        data.add(user);
+    }
+
+    public void logoutAllExceptAdmin() {
+        User user;
+        for (int i = 0; i < data.size(); i++) {
+            user = data.get(i);
+            if (!user.isAdmin) {
+                data.remove(i);
+            }
+        }
     }
 
     public boolean findByName(String username) {

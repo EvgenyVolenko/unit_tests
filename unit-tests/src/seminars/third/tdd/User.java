@@ -7,6 +7,8 @@ public class User {
     String name;
     String password;
 
+    boolean isAdmin;
+
     boolean isAuthenticate = false;
 
     public User(String name, String password, boolean isAdmin) {

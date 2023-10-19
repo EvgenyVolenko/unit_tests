@@ -3,19 +3,22 @@ package seminars.third.tdd;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
     static UserRepository repository;
+
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         repository = new UserRepository();
     }
 
     @Test
-    void checkAuthenticateUserPositive(){
+    void checkAuthenticateUserPositive() {
         String name = "name";
         String password = "password";
 
@@ -25,7 +28,7 @@ public class UserTest {
     }
 
     @Test
-    void checkAuthenticateUserNegative(){
+    void checkAuthenticateUserNegative() {
         String name = "name";
         String password = "password";
         String wrongPassword = "wrongPassword";
@@ -36,7 +39,7 @@ public class UserTest {
     }
 
     @Test
-    void checkRepositoryAddAuthenticatedUserPositive(){
+    void checkRepositoryAddAuthenticatedUserPositive() {
         String name = "name";
         String password = "password";
 
@@ -46,17 +49,17 @@ public class UserTest {
         int currentCount = repository.data.size();
         repository.addUser(user);
 
-       assertThat(repository.data.size())
-               .isEqualTo(currentCount + 1);
+        assertThat(repository.data.size())
+                .isEqualTo(currentCount + 1);
 
-       User userInRepository =
-               repository.data.get(repository.data.size() - 1);
+        User userInRepository =
+                repository.data.get(repository.data.size() - 1);
 
-       assertEquals(user, userInRepository);
+        assertEquals(user, userInRepository);
     }
 
     @Test
-    void checkRepositoryAddNotAuthenticatedUserNegative(){
+    void checkRepositoryAddNotAuthenticatedUserNegative() {
         String name = "name";
         String password = "password";
 
@@ -67,5 +70,33 @@ public class UserTest {
 
         assertThat(repository.data.size())
                 .isEqualTo(currentCount);
+    }
+
+    @Test
+    void logoutAllExceptAdminTestPositive() {
+
+        User user;
+
+        String[] nameArray = {"name1", "name2", "name3"};
+        String[] passwordArray = {"password1", "password2", "password3"};
+        boolean[] isAdminArray = {false, true, true};
+
+        for (int i = 0; i < nameArray.length; i++) {
+            user = new User(nameArray[i], passwordArray[i], isAdminArray[i]);
+            user.authenticate(nameArray[i], passwordArray[i]);
+            repository.addUser(user);
+        }
+
+        int currentAdmins = 0;
+        for (int i = 0; i < repository.data.size(); i++) {
+            System.out.println(repository.data.get(i).isAdmin);
+            if (repository.data.get(i).isAdmin) {
+                currentAdmins++;
+            }
+        }
+
+        repository.logoutAllExceptAdmin();
+
+        assertThat(repository.data.size()).isEqualTo(currentAdmins);
     }
 }

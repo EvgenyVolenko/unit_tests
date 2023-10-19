@@ -42,7 +42,7 @@ public class MainHWTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {24, 13, -5})
+    @ValueSource(ints = {24, -5, 110})
     void numberFallsWithinRangeNegative(int input){
         boolean numRange = mainHW.numberInInterval(input);
         assertFalse(numRange);
