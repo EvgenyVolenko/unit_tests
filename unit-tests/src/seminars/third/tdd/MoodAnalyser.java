@@ -18,5 +18,4 @@ public class MoodAnalyser {
         }
         return "What are you mean?";
     }
-
 }

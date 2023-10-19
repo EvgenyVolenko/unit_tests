@@ -21,5 +21,4 @@ public class User {
                 Objects.equals(this.password, password);
         return isAuthenticate;
     }
-
 }

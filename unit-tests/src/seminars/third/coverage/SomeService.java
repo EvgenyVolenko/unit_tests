@@ -58,7 +58,4 @@ public class SomeService {
         if(third!= 13) result += third;
         return result;
     }
-
-
-
 }
