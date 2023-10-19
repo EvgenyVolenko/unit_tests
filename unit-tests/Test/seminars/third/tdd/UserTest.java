@@ -79,7 +79,7 @@ public class UserTest {
 
         String[] nameArray = {"name1", "name2", "name3"};
         String[] passwordArray = {"password1", "password2", "password3"};
-        boolean[] isAdminArray = {false, true, true};
+        boolean[] isAdminArray = {false, false, true};
 
         for (int i = 0; i < nameArray.length; i++) {
             user = new User(nameArray[i], passwordArray[i], isAdminArray[i]);
@@ -95,8 +95,12 @@ public class UserTest {
             }
         }
 
+        user = new User("user5", "password5", true);
+        user.authenticate("user5", "password5");
+        repository.addUser(user);
+
         repository.logoutAllExceptAdmin();
 
-        assertThat(repository.data.size()).isEqualTo(currentAdmins);
+        assertThat(repository.data.size()).isEqualTo(currentAdmins + 1);
     }
 }
