@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -40,7 +41,7 @@ class MainTest {
         when(iteratorMock.next()).thenReturn("Hello", "World");
         String result = iteratorMock.next() + " " + iteratorMock.next();
         // assert
-
+        assertEquals("Hello World", result);
     }
 
 }
