@@ -8,11 +8,7 @@ public class MainHW {
     // Метод проверяет, является ли целое число записанное в переменную n, чётным (true) либо нечётным (false).
 
     public boolean evenOddNumber(int n) {
-        if (n % 2 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return n % 2 == 0;
     }
 
 
@@ -21,9 +17,6 @@ public class MainHW {
     // покрыть тестами метод на 100%
 
     public boolean numberInInterval(int n) {
-        if (n > 25 && n < 100) {
-        return true;
-        }
-        return false;
+        return n > 25 && n < 100;
     }
 }
