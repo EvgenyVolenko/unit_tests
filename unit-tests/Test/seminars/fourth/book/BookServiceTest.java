@@ -2,6 +2,7 @@ package seminars.fourth.book;
 
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -13,15 +14,24 @@ import static org.mockito.Mockito.*;
 
 class BookServiceTest {
 
+    InMemoryBookRepository imbr;
+    Book bookTest;
+
+    @BeforeEach
+    void setup() {
+        imbr = new InMemoryBookRepository();
+        bookTest = new Book("3", "Book3", "Author3");
+    }
+
+
     @Test
     void bookServiceFindBiIdTest() {
         BookRepository bookRepository = mock(BookRepository.class);
         BookService bookService = new BookService(bookRepository);
-        InMemoryBookRepository imbr = new InMemoryBookRepository();
         Book book = imbr.findById("1");
         bookRepository.findById("1");
         when(bookRepository.findById("1")).thenReturn(book);
-//        System.out.println(bookRepository.findById("1"));
+
         verify(bookRepository).findById("1");
         assertThat(bookRepository.findById("1")).isEqualTo(bookService.findBookById("1"));
     }
@@ -30,12 +40,21 @@ class BookServiceTest {
     void bookServiceFindAllTest() {
         BookRepository bookRepository = mock(BookRepository.class);
         BookService bookService = new BookService(bookRepository);
-        InMemoryBookRepository imbr = new InMemoryBookRepository();
         List<Book> list = imbr.findAll();
         bookRepository.findAll();
         when(bookRepository.findAll()).thenReturn(list);
 
         verify(bookRepository).findAll();
         assertThat(bookRepository.findAll()).isEqualTo(bookService.findAllBooks());
+    }
+
+    @Test
+    void bookGetIdTest() {
+        assertThat(bookTest.getId()).isEqualTo("3");
+    }
+
+    @Test
+    void bookGetTitleTest() {
+        assertThat(bookTest.getTitle()).isEqualTo("Book3");
     }
 }
