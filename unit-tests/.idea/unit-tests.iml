@@ -15,5 +15,15 @@
     <orderEntry type="library" name="mockito-core-5.5.0" level="project" />
     <orderEntry type="library" name="byte-buddy-1.14.9" level="project" />
     <orderEntry type="library" name="byte-buddy-agent-1.14.9" level="project" />
+    <orderEntry type="library" name="selenium-java-4.14.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/selenium-server-4.14.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
