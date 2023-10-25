@@ -28,7 +28,11 @@ public class SeleniumTest {
 
 
         assertThat(seleniumElement.getText()).isEqualTo("https://www.selenium.dev");
-//        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         webDriver.quit();
     }
 
