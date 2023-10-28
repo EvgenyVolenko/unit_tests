@@ -29,5 +29,8 @@
     <orderEntry type="library" name="junit-jupiter-api-5.9.1" level="project" />
     <orderEntry type="library" name="junit-jupiter-params-5.9.1" level="project" />
     <orderEntry type="library" name="junit-platform-commons-1.9.1" level="project" />
+    <orderEntry type="library" name="mockito-core-5.5.0" level="project" />
+    <orderEntry type="library" name="selenium-java-4.14.1" level="project" />
+    <orderEntry type="library" name="selenium-server-4.14.1" level="project" />
   </component>
 </module>
