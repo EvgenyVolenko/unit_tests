@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class ArrayModule {
 
-    private int[] array;
-
     public int[] fillArray(int size, int maxValue, int minValue) {
         Random rnd = new Random();
         int[] array = new int[size];
@@ -19,7 +17,7 @@ public class ArrayModule {
         int sum = 0;
         int count = arr.length;
         for (int i = 0; i < count; i++) {
-            sum += arr[i];
+            sum = Math.addExact(sum, arr[i]);
         }
         return (double) sum / count;
     }

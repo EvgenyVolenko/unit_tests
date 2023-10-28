@@ -3,7 +3,7 @@ package seminars.finalHW.controllers;
 import seminars.finalHW.model.ArrayModule;
 
 public class Controller {
-    private ArrayModule arrayModule;
+    private final ArrayModule arrayModule;
 
     public Controller(ArrayModule arrayModule) {
         this.arrayModule = arrayModule;

@@ -1,12 +1,14 @@
 package seminars.finalHW.model;
 
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ArrayModuleTest {
 
@@ -19,18 +21,36 @@ class ArrayModuleTest {
         rnd = new Random();
     }
 
-    @Test
+    @RepeatedTest(10)
+    void checkArrayIsNotEmpty(){
+        int size = rnd.nextInt(100);
+        int minValue = rnd.nextInt(100);
+        int maxValue = minValue + rnd.nextInt(100);
+        int[] array = arrayModule.fillArray(size, maxValue, minValue);
+        // Проверяем массив на то, что он не пустой
+        assertThat(array).isNotEmpty();
+    }
+
+    @RepeatedTest(10)
     void fillArray() {
         int size = 5;
         int minValue = rnd.nextInt(100);
         int maxValue = minValue + rnd.nextInt(100);
         // Проверяем, что создан массив нужного размера
-        assertThat(arrayModule.fillArray(size, maxValue, minValue).length).isEqualTo(5);
+        assertThat(arrayModule.fillArray(size, maxValue, minValue).length).isSameAs(5);
+    }
+
+    @Test
+    void averageValueTypeOverFlow(){
+        int[] array = new int[]{Integer.MAX_VALUE, 1};
+        // Проверяем поведение программы в процессе суммирования для расчета среднего на переполнение типа int.
+        assertThatThrownBy(() -> arrayModule.averageValue(array))
+                .isInstanceOf(ArithmeticException.class);
     }
 
     @Test
     void averageValue() {
-        int[] array = new int[]{1, 2, 3, 4, 5};
+        int [] array = new int[]{1, 2, 3, 4, 5};
         // Проверяем расчет среднего значения
         assertThat(arrayModule.averageValue(array)).isEqualTo(3);
     }
@@ -56,9 +76,8 @@ class ArrayModuleTest {
     @Test
     void compareAveragesAEquallyA1() {
         double average1 = Math.random() * rnd.nextInt(1000);
-        double average = average1;
         // Проверяем сравнение средних значений
-        assertThat(arrayModule.compareAverages(average, average1))
+        assertThat(arrayModule.compareAverages(average1, average1))
                 .isEqualTo("Средние значения равны");
     }
 }
