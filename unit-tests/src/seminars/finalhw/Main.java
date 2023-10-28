@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         ArrayModule arrayModule = new ArrayModule();
         Controller controller = new Controller(arrayModule);

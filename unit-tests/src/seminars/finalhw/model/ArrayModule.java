@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class ArrayModule {
 
-    Random rnd = new Random();
+    private Random rnd = new Random();
 
-    public int[] fillArray(int size, int maxValue, int minValue) {
+    public int[] fillArray(final int size, int maxValue, final int minValue) {
 
         if (maxValue == minValue) {
             maxValue += 10;
@@ -19,7 +19,7 @@ public class ArrayModule {
         return array;
     }
 
-    public double averageValue(int[] arr) {
+    public double averageValue(final int[] arr) {
         int sum = 0;
         int count = arr.length;
         for (int i = 0; i < count; i++) {
@@ -28,10 +28,10 @@ public class ArrayModule {
         return (double) sum / count;
     }
 
-    public String compareAverages(double average1, double average2) {
-        if (average1 > average2) {
+    public String compareAverages(final double aver1, final double aver2) {
+        if (aver1 > aver2) {
             return "Первый список имеет большее среднее значение";
-        } else if (average2 > average1) {
+        } else if (aver2 > aver1) {
             return "Второй список имеет большее среднее значение";
         } else {
             return "Средние значения равны";

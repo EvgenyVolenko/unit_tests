@@ -5,19 +5,19 @@ import seminars.finalhw.model.ArrayModule;
 public class Controller {
     private final ArrayModule arrayModule;
 
-    public Controller(ArrayModule arrayModule) {
+    public Controller(final ArrayModule arrayModule) {
         this.arrayModule = arrayModule;
     }
 
-    public int[] fillArrayController(int size, int maxValue, int minValue) {
+    public int[] fillArrayController(final int size, final int maxValue, final int minValue) {
         return arrayModule.fillArray(size, maxValue, minValue);
     }
 
-    public String compareAveragesController(double average1, double average2) {
+    public String compareAveragesController(final double average1, final double average2) {
         return arrayModule.compareAverages(average1, average2);
     }
 
-    public double averageValueController(int[] arr) {
+    public double averageValueController(final int[] arr) {
         return arrayModule.averageValue(arr);
     }
 }
