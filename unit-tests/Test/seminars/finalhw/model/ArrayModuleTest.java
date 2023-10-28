@@ -1,6 +1,5 @@
-package seminars.finalHW.model;
+package seminars.finalhw.model;
 
-import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -25,9 +24,9 @@ class ArrayModuleTest {
         maxValue = minValue + rnd.nextInt(100);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(1000)
     void checkArrayIsNotEmpty() {
-        int size = rnd.nextInt(100);
+        int size = rnd.nextInt(100) + 1;
 
         int[] array = arrayModule.fillArray(size, maxValue, minValue);
         // Проверяем массив на то, что он не пустой

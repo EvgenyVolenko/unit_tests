@@ -1,7 +1,7 @@
-package seminars.finalHW;
+package seminars.finalhw;
 
-import seminars.finalHW.controllers.Controller;
-import seminars.finalHW.model.ArrayModule;
+import seminars.finalhw.controllers.Controller;
+import seminars.finalhw.model.ArrayModule;
 
 import java.util.Arrays;
 

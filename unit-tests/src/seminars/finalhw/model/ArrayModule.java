@@ -1,8 +1,10 @@
-package seminars.finalHW.model;
+package seminars.finalhw.model;
 
 import java.util.Random;
 
 public class ArrayModule {
+
+    Random rnd = new Random();
 
     public int[] fillArray(int size, int maxValue, int minValue) {
 
@@ -10,7 +12,6 @@ public class ArrayModule {
             maxValue += 10;
         }
 
-        Random rnd = new Random();
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
             array[i] = rnd.nextInt(maxValue - minValue) + minValue;

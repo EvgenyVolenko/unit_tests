@@ -1,6 +1,6 @@
-package seminars.finalHW.controllers;
+package seminars.finalhw.controllers;
 
-import seminars.finalHW.model.ArrayModule;
+import seminars.finalhw.model.ArrayModule;
 
 public class Controller {
     private final ArrayModule arrayModule;
