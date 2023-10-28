@@ -14,18 +14,21 @@ class ArrayModuleTest {
 
     ArrayModule arrayModule;
     Random rnd;
+    int minValue;
+    int maxValue;
 
     @BeforeEach
     void setup() {
         arrayModule = new ArrayModule();
         rnd = new Random();
+        minValue = rnd.nextInt(100);
+        maxValue = minValue + rnd.nextInt(100);
     }
 
     @RepeatedTest(10)
-    void checkArrayIsNotEmpty(){
+    void checkArrayIsNotEmpty() {
         int size = rnd.nextInt(100);
-        int minValue = rnd.nextInt(100);
-        int maxValue = minValue + rnd.nextInt(100);
+
         int[] array = arrayModule.fillArray(size, maxValue, minValue);
         // Проверяем массив на то, что он не пустой
         assertThat(array).isNotEmpty();
@@ -34,14 +37,19 @@ class ArrayModuleTest {
     @RepeatedTest(10)
     void fillArray() {
         int size = 5;
-        int minValue = rnd.nextInt(100);
-        int maxValue = minValue + rnd.nextInt(100);
         // Проверяем, что создан массив нужного размера
         assertThat(arrayModule.fillArray(size, maxValue, minValue).length).isSameAs(5);
     }
 
+    @RepeatedTest(10)
+    void fillArrayThenMinMaxEqual() {
+        int size = rnd.nextInt(100);
+        // Проверяем, что при тестировании обеспечивается положительное значение bound передаваемое в Random
+        assertThat(arrayModule.fillArray(size, maxValue, maxValue)).isNotEmpty();
+    }
+
     @Test
-    void averageValueTypeOverFlow(){
+    void averageValueTypeOverFlow() {
         int[] array = new int[]{Integer.MAX_VALUE, 1};
         // Проверяем поведение программы в процессе суммирования для расчета среднего на переполнение типа int.
         assertThatThrownBy(() -> arrayModule.averageValue(array))
@@ -50,7 +58,7 @@ class ArrayModuleTest {
 
     @Test
     void averageValue() {
-        int [] array = new int[]{1, 2, 3, 4, 5};
+        int[] array = new int[]{1, 2, 3, 4, 5};
         // Проверяем расчет среднего значения
         assertThat(arrayModule.averageValue(array)).isEqualTo(3);
     }
