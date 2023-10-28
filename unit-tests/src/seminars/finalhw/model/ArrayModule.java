@@ -22,8 +22,8 @@ public class ArrayModule {
     public double averageValue(final int[] arr) {
         int sum = 0;
         int count = arr.length;
-        for (int i = 0; i < count; i++) {
-            sum = Math.addExact(sum, arr[i]);
+        for (int digit : arr) {
+            sum = Math.addExact(sum, digit);
         }
         return (double) sum / count;
     }
